@@ -1,0 +1,5 @@
+set(OpenCV_USE_OPENMP   "@HAVE_OPENMP@")
+
+if(OpenCV_USE_OPENMP)
+  find_package(OpenMP)
+endif()
