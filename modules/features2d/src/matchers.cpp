@@ -1058,21 +1058,7 @@ void FlannBasedMatcher::add( InputArrayOfArrays _descriptors )
 {
     DescriptorMatcher::add( _descriptors );
 
-    if( _descriptors.isUMatVector() )
-    {
-        std::vector<UMat> descriptors;
-        _descriptors.getUMatVector( descriptors );
-
-        for( size_t i = 0; i < descriptors.size(); i++ )
-        {
-            addedDescCount += descriptors[i].rows;
-        }
-    }
-    else if( _descriptors.isUMat() )
-    {
-        addedDescCount += _descriptors.getUMat().rows;
-    }
-    else if( _descriptors.isMatVector() )
+    if( _descriptors.isMatVector() )
     {
         std::vector<Mat> descriptors;
         _descriptors.getMatVector(descriptors);
@@ -1087,7 +1073,7 @@ void FlannBasedMatcher::add( InputArrayOfArrays _descriptors )
     }
     else
     {
-        CV_Assert( _descriptors.isUMat() || _descriptors.isUMatVector() || _descriptors.isMat() || _descriptors.isMatVector() );
+        CV_Assert( _descriptors.isMat() || _descriptors.isMatVector() );
     }
 }
 
